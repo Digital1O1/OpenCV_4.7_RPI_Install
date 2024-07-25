@@ -44,6 +44,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D INSTALL_PYTHON_EXAMPLES=OFF \
 -D PYTHON3_PACKAGES_PATH=/usr/lib/python3/dist-packages \
 -D OPENCV_GENERATE_PKGCONFIG=ON \
+-D BUILD_opencv_python3=ON \
+-D PYTHON3_EXECUTABLE=$(which python3) \
+-D PYTHON3_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
+-D PYTHON3_LIBRARY=$(python3 -c "import distutils.sysconfig as sysconfig; print(sysconfig.get_config_var('LIBDIR'))") \
 -D BUILD_EXAMPLES=OFF ..
 
 make -j4
@@ -55,4 +59,4 @@ sudo apt-get update && sudo apt-get upgrade
 cd ~
 rm opencv.zip
 rm opencv_contrib.zip
-sudo reboot
+# sudo reboot
